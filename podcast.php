@@ -99,8 +99,8 @@ class PodcastPlugin extends Plugin
             $path = $obj->media()->get($local_audio['name'])->path();
             
             $audio_meta['guid'] = $local_audio['path'];
-            $audio_meta['type'] = $this->retreiveAudioType($audio_meta['guid']);
-            $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
+            $audio_meta['type'] = $this->retreiveAudioType($path);
+            $audio_meta['duration'] = $this->retreiveAudioDuration($path);
             $audio_meta['enclosure_length'] = $this->retreiveAudioLength($path);
         }
         if (isset($header->podcast['audio']['remote']) && !isset($audio_meta)) {
@@ -179,7 +179,7 @@ class PodcastPlugin extends Plugin
         }
 
     }
-    
+
     /**
      * Retrieve audio metadata duration.
      *
