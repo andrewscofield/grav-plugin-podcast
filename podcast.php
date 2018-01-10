@@ -149,7 +149,12 @@ class PodcastPlugin extends Plugin
     public static function retreiveAudioLength($file)
     {
         $id3 = GetID3Plugin::analyzeFile($file);
+        if(array_key_exists('filesize', $id3)){
         return ($id3['filesize']);
+    }
+        else{
+            return '';
+        }
     }
 
     /**
@@ -163,7 +168,13 @@ class PodcastPlugin extends Plugin
     public static function retreiveAudioType($file)
     {
         $id3 = GetID3Plugin::analyzeFile($file);
+        if(array_key_exists('mime_type', $id3)){
         return ($id3['mime_type']);
+    }
+        else{
+            return '';
+        }
+    
     }
     
     /**
@@ -177,7 +188,12 @@ class PodcastPlugin extends Plugin
     public static function retreiveAudioDuration($file)
     {
         $id3 = GetID3Plugin::analyzeFile($file);
+        if(array_key_exists('playtime_string', $id3)){
         return ($id3['playtime_string']);
+    }
+        else{
+            return '';
+        }
     }
 
     /**
