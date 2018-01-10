@@ -94,11 +94,14 @@ class PodcastPlugin extends Plugin
             // Create a temporary array to perform the array_shift on.
             $local_audio = $header->podcast['audio']['local'];
             $local_audio = array_shift($local_audio);
+
+            //full media path
+            $path = $obj->media()->get($local_audio['name'])->path();
             
             $audio_meta['guid'] = $local_audio['path'];
             $audio_meta['type'] = $this->retreiveAudioType($audio_meta['guid']);
             $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
-            $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
+            $audio_meta['enclosure_length'] = $this->retreiveAudioLength($path);
         }
         if (isset($header->podcast['audio']['remote']) && !isset($audio_meta)) {
             // Download fle from external url to temporary location.
