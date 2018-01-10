@@ -73,7 +73,10 @@ class PodcastPlugin extends Plugin
     public function onTwigSiteVariables()
     {
         $this->grav['assets']
-            ->addCss('plugin://podcast/assets/css/podcast.css');
+            ->addCss('plugin://podcast/dist/css/podcast.css');
+
+        $this->grav['assets']
+            ->addJs('plugin://podcast/dist/js/podcast.js');
     }
     
     public function onAdminSave($event)
