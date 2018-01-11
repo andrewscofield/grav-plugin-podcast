@@ -1,2 +1,31 @@
+.podcast-channel-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 480px;
+  background: url("../../assets/images/default-bg.jpg") repeat center center;
+  padding: 80px 40px 0 40px;
+}
+
+.channel-title {
+  text-align: left;
+}
+
+.channel-subtitle {
+  margin: 0;
+}
+
+#body {
+  padding: 0;
+}
 
 /*# sourceMappingURL=podcast.css.map */

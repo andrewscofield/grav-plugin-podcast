@@ -1,0 +1,22 @@
+
+.podcast-channel-header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 480px;
+  background: url('../../assets/images/default-bg.jpg') repeat center center;
+  padding: 80px 40px 0 40px;
+}
+
+.channel-title{
+  text-align: left;
+  // margin: 0;
+}
+
+.channel-subtitle{
+  margin: 0;
+}
+
+
+
