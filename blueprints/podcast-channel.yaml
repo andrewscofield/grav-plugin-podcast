@@ -19,7 +19,9 @@ form:
             header.title:
               type: text
               label: Page Title
-
+            header.subtitle:
+              type: text
+              label: Page Subtitle
             header.feed.rss:
               type: hidden
               default: 'true'
