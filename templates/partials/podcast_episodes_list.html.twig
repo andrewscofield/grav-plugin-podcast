@@ -1,40 +1,30 @@
-<div id = "episodes">
-    <ul>
-                    
+<div class="podcast-channel">
+    <h2 class="podcast-channel-title">Latest Episodes</h2>
+    <div class="episodes">
         {% for episode in episodes %}
-            <li>
-                <div class="episode-image">
-                    {% if ((episode.header.podcast.itunes.image)|first) %}
-                        {{ page.find(episode.route).media[ (((episode.header.podcast.itunes.image)|first).name) ].cropResize(200, 200).html}}
-                    {% else %}
-                        <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" />
-                    {% endif %}
-                </div>
-                <a href ="{{ episode.url }}">
-                <h2>{{ episode.title }}
-                    {% if (episode.header.podcast.audio.meta.duration) %}
-                        <small>( {{ episode.header.podcast.audio.meta.duration }} )</small>
-                    {% else %}
-                        <small>( No Audio )</small>
-                    {% endif %}
-                </h2>
+            {% if episode.header.podcast.audio.meta %}
+            {% set audio = episode.header.podcast.audio.local ? episode.media[episode.header.podcast.audio.local | first.name].url : episode.header.podcast.audio.remote  %}
+
+            <div class="episode">
+                <div class="episode-date">{{ (episode.date)|date('F j, Y') }}</div>
+                <a href="{{ episode.url }}" class="episode-title-link">
+                    <h2 class="episode-title">{{ episode.title }}</h2>
                 </a>
-                <p class = "episode-date">
-                    {{ (episode.modified)|date('Y-m-d')|nicetime(false) }}
-                </p>
-                <p pass = "episode-description">
-                    {% if episode.summary %}
-                        {{ (episode.summary)|truncate(120) }}
-                    {% else %}
-                        No summary available.
-                    {% endif %}
-                </p>
-                {% if episode.header.podcast.audio.meta %}
-                    <p class = "podcast-episode-audio">
-                        <audio controls="1" alt="episode.title"><source src="{{episode.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
-                    </p>
+                {% if episode.subtitle %}
+                    <h4 class="episode-subtitle">{{ episode.subtitle }}</h4>
                 {% endif %}
-            </li>
+
+                {% if episode.content %}
+                <div class="episode-description">
+                    {{ (episode.content) }}
+                </div>
+                {% endif %}
+
+                <div class="episode-player">
+                    {% include 'partials/episode_player.html.twig' with {'episode': episode, 'audio': audio} %}
+                </div>
+            </div>
+            {% endif %}
         {% endfor %}
-    </ul>
+    </div>
 </div>

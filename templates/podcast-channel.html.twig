@@ -20,19 +20,8 @@
             <a href="{{base_url_simple}}{{page.route}}.rss" class="channel-link button"><i class="fa fa-rss" aria-hidden="true"></i> Subscribe <span>To {{page.title}}</span></a>
         </div>
     </div>
-    {% if (page.content) %}
-    <div class="channel-content">
-        <p>
-            {{page.content}}
-        </p>
-    </div>
-
-    {% endif %}
 
     {% include 'partials/podcast_episodes_list.html.twig' %}
-    {% include 'partials/podcast_series_list.html.twig' %}
-    <div class="clearfix"></div>
-
 
 {% endblock %}
 

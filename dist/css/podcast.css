@@ -8,12 +8,19 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   min-height: 480px;
   background: url("../../assets/images/default-bg.jpg") repeat center center;
-  padding: 80px 40px 0 40px;
+  padding: 80px 40px 40px 40px;
+}
+
+.channel-meta {
+  width: 100%;
 }
 
 .channel-title {
@@ -22,6 +29,124 @@
 
 .channel-subtitle {
   margin: 0;
+}
+
+.channel-links {
+  width: 100%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.podcast-channel {
+  padding: 40px;
+}
+
+.podcast-channel-title {
+  text-align: left;
+}
+
+.episodes {
+  padding-bottom: 150px;
+  max-width: 960px;
+}
+
+.episode {
+  padding-bottom: 40px;
+}
+
+.episode-title {
+  font-size: 32px;
+  margin-top: 0;
+}
+
+.episode-title-link {
+  display: block;
+}
+
+.episode-date {
+  font-weight: bold;
+}
+
+.episode-wrapper {
+  padding: 40px 40px 140px 40px;
+  max-width: 960px;
+}
+
+.podcast-player {
+  background: #222222;
+  color: #ffffff;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.podcast-player-buttons {
+  width: 60px;
+  height: 55px;
+  position: relative;
+  border-right: 1px solid #000000;
+}
+
+.podcast-player-buttons svg {
+  width: 100%;
+  height: 100%;
+  fill: #ffffff;
+}
+
+.podcast-player-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 16px 13px 13px 13px;
+}
+
+.podcast-pause-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.podcast-player.playing .podcast-play-button {
+  opacity: 0;
+}
+
+.podcast-player.playing .podcast-pause-button {
+  opacity: 1;
+}
+
+.podcast-player-progress {
+  width: 100%;
+  height: 10px;
+  position: relative;
+  margin: 0 10px 0 20px;
+  background: #000000;
+}
+
+.podcast-player-progress-bar {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 0px;
+  width: 0%;
+  background: #dddddd;
+}
+
+.podcast-player-progress-time {
+  mix-blend-mode: difference;
+  width: 70px;
+  text-align: center;
+}
+
+.podcast-player-audio {
+  display: none;
 }
 
 #body {

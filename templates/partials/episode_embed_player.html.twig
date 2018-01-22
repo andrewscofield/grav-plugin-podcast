@@ -1,0 +1,32 @@
+<div class="podcast-player">
+  <div class="podcast-player-image">
+    {% if ((episode.header.podcast.itunes.image)|first) %}
+        {{ page.find(episode.route).media[ (((episode.header.podcast.itunes.image)|first).name) ].cropResize(200, 200).html}}
+    {% else %}
+        <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" />
+    {% endif %}
+  </div>
+  <div class="podcast-player-buttons">
+    <div class="podcast-play-button">
+      <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1576 927l-1328 738q-23 13-39.5 3t-16.5-36v-1472q0-26 16.5-36t39.5 3l1328 738q23 13 23 31t-23 31z"/></svg>
+    </div>
+    <div class="podcast-pause-button">
+      <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M832 1184v-576q0-14-9-23t-23-9h-256q-14 0-23 9t-9 23v576q0 14 9 23t23 9h256q14 0 23-9t9-23zm448 0v-576q0-14-9-23t-23-9h-256q-14 0-23 9t-9 23v576q0 14 9 23t23 9h256q14 0 23-9t9-23zm384-288q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/></svg>
+    </div>
+  </div>
+  <div class="podcast-player-meta">
+    <div class="podcast-player-date">{{ (episode.date)|date('F j, Y') }}</div>
+    <div class="podcast-player-title">{{ episode.title }}</div>
+    <div class="podcast-player-subtitle-date">
+      {% if episode.header.subtitle %}
+        <div class="podcast-player-subtitle">{{ episode.subtitle }}</div>
+      {% endif %}
+      {% if episode.header.podcast.itunes.author %}
+        <div class="podcast-player-author">{{ episode.header.podcast.itunes.author }}</div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+</div>

@@ -1,18 +1,47 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <h1>{{ header.title }}</h1>
-    {% if page.parent.name == 'podcast-series.md' %}
-        <h2>An episode in the series {{page.parent.title}}</h2>
-    {% endif %}
-    <h3>Posted {{ header.date|date('Y-m-d')|nicetime(false) }}</h3>
-    {{ page.content }}
-    {% if page.header.podcast.audio.meta %}
-        <p class = "podcast-episode-audio">
-            <audio controls="1" alt="episode.title"><source src="{{page.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
-            <br/><a href ="{{page.header.podcast.audio.meta.guid}}">Download Audio</a>
-        </p>
-    {% endif %}
+{% set audio = page.header.podcast.audio.local ? page.media[page.header.podcast.audio.local | first.name].url : page.header.podcast.audio.remote  %}
+{% set parent = (page.parent.template == 'podcast-series') ? page.parent.parent : page.parent  %}
+   <div class="podcast-channel-header">
+        {% if page.header.podcast.itunes.image %}
+            <div class = "podcast-channel-image">
+                {% set channel_image = ((page.header.podcast.itunes.image)|first) %}
+                {{ parent.media[channel_image.name].resize(200, 200).html() }}
+            </div>
+        {% endif %}
 
+        <div class="channel-meta">
+            <h1 class="channel-title">{{ parent.header.title }}</h1>
+            {% if parent.header.subtitle %}
+                <h3 class="channel-subtitle">{{parent.header.subtitle}}</h3>
+            {% endif %}
+        </div>
+
+        <div class="channel-links">
+            <a href="{{base_url_simple}}{{parent.route}}.rss" class="channel-link button"><i class="fa fa-rss" aria-hidden="true"></i> Subscribe <span>To {{parent.title}}</span></a>
+        </div>
+    </div>
+
+    <div class="episode-wrapper">
+        <div class="episode-date">{{ (page.date)|date('F j, Y') }}</div>
+        <a href="{{ page.url }}" class="episode-title-link">
+            <h2 class="episode-title">{{ page.title }}</h2>
+        </a>
+        {% if page.subtitle %}
+            <h4 class="episode-subtitle">{{ page.subtitle }}</h4>
+        {% endif %}
+
+        {% if page.content %}
+        <div class="episode-description">
+            {{ (page.content) }}
+        </div>
+        {% endif %}
+
+        <div class="episode-player">
+            {% include 'partials/episode_player.html.twig' with {'episode': episode, 'audio': audio} %}
+        </div>
+
+    </div>
 
 {% endblock %}
